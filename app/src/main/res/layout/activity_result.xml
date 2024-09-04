@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- TextView: 识别图片 -->
+    <TextView
+        android:id="@+id/text_recognition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="识别图片"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <!-- ImageView: 显示裁剪后的图片 -->
+    <ImageView
+        android:id="@+id/cropped_image"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/text_recognition"
+        android:layout_marginTop="16dp"
+        android:layout_alignStart="@id/text_recognition"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"/>
+
+    <!-- TextView: 裁剪结果 -->
+    <TextView
+        android:id="@+id/text_crop_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="识别结果"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_below="@id/cropped_image"
+        android:layout_marginTop="16dp"
+        android:layout_alignStart="@id/cropped_image"/>
+
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_below="@id/text_crop_result"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:layout_alignStart="@id/cropped_image"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_result"-->
+<!--        android:layout_width="400dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_below="@id/text_crop_result"-->
+<!--        android:inputType="textMultiLine"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_alignStart="@id/cropped_image"/>-->
+
+    <ImageView
+        android:id="@+id/resulted_image"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/web_view"
+        android:layout_marginTop="40dp"
+        android:layout_alignStart="@id/text_recognition"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"/>
+
+</RelativeLayout>
