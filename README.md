@@ -1,4 +1,4 @@
-# 基于PaddleOCR的拍照&文本识别android-demo  
+# 基于PaddleOCR的拍照裁剪&文本识别的android-demo
 
 <!-- [Read in English](README_en.md) -->
 ## 项目简介
@@ -7,13 +7,13 @@
 
 PaddleOCR 因其开源、高效以及卓越的识别效果，广泛应用于各种 OCR（Optical Character Recognition）场景。同时，PaddleOCR-Lite 凭借其轻量化和小巧的优势，成为移动端 OCR 识别的理想选择。
 
-**然而，对于初学者而言，官方文档在模型部署方面的说明较为分散且复杂，主要集中在演示（demo）和模型开源上。此外，Paddle官方建议在官方演示基础上进行修改，而不是作为一个独立模块直接引入现有项目中，这使得将 PaddleOCR 直接应用于现有项目中变得更加困难。**
+**然而，对于初学者而言，官方文档在模型的移动端部署的说明较为分散且复杂，主要集中在演示（demo）和模型开源上。此外，Paddle官方建议在官方演示基础上进行修改，而不是作为一个独立模块直接引入现有项目中，这使得将 PaddleOCR 直接应用于现有的安卓项目中变得更加困难。**
 
 为了降低这一难度，本项目参考了 [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)和[Paddle-lite-demo](https://github.com/PaddlePaddle/Paddle-Lite-Demo) 中的示例，对各文件进行了详细解释，帮助用户将 PaddleOCR 模块无缝集成到已有项目中。总之，以下是本项目的特点所在:
 
-* **集成 PaddleOCR 文本识别模型:** 项目使用了 PaddleOCR 的文本识别模型，并结合 Android-Image-Cropper 库，在 Android 端实现了高效的文本识别功能。
+* **集成 PaddleOCR 文本识别模型:** 项目使用了 PaddleOCR 的文本识别模型，并结合 Android-Image-Cropper 库，实现了PaddleOCR在 Android 端的部署和高效的文本识别功能。
 
-* **简化的部署过程:** 通过提供清晰的文件说明和代码示例，本项目帮助开发者轻松将 PaddleOCR 作为较为独立的模块引入到现有的 Android 项目中。
+* **简化的部署过程:** 通过提供清晰的文件说明和代码示例，本项目帮助开发者轻松将 PaddleOCR 作为较为独立的模块部署到现有的 Android 项目中。
 
 * **支持服务器端部署:** 除了移动端的实现外，项目还包含在服务器端使用 Python 版本的 PaddleOCR 模型的代码，为未来的服务器端功能扩展和交互提供了便利。
 
@@ -35,7 +35,7 @@ PaddleOCR 因其开源、高效以及卓越的识别效果，广泛应用于各�
 
 ## PaddleOCR的导入和配置
 
-本项目使用[PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)和[Paddle-lite-demo](https://github.com/PaddlePaddle/Paddle-Lite-Demo)两个demo中的部分代码完成文本的识别功能。
+本项目使用[PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)和[Paddle-lite-demo](https://github.com/PaddlePaddle/Paddle-Lite-Demo)两个demo中的部分代码完成移动端的PaddleOCR部署和文本的识别功能。
 
 * ### 额外添加的项目文件
 
