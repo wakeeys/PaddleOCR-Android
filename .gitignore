@@ -8,3 +8,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+app/src/main/python/.idea/*
+app/src/main/python/__pycache__/*
