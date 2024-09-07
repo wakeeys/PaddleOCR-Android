@@ -18,6 +18,7 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -53,6 +54,9 @@ import retrofit2.Response;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.graphics.Bitmap;
+import android.util.Base64;
+import java.io.ByteArrayOutputStream;
 
 
 public class ResultActivity extends AppCompatActivity {
@@ -83,10 +87,15 @@ public class ResultActivity extends AppCompatActivity {
             "</script>" +
             "<script type=\"text/javascript\" async " +
             "src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML\">" +
-            "</script>" +
+            "</script>"+
+            "<style>body {width: 100%;overflow-x: hidden;margin: 0;padding: 0;}"+  // prohibit the sliding left or right
+            "img {display: block;margin: 0 auto;max-width: 100%;height: auto;}</style>" +  // display the image in the center
             "</head>" +
             "<body>";
-    String content2 = "</body>" + "</html>";
+    String content2 = "</body></html>";
+    String content3 = "<img src=\"data:image/jpeg;base64,";
+    String content4 = "\" style=\"width:100%;height:auto;overflow-x:hidden;\" />";
+    String emptyLineBeforeImage = "<br/><br/>";
 
 
     @Override
@@ -95,7 +104,7 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         croppedImageView = findViewById(R.id.cropped_image);
-        resultImageView = findViewById(R.id.resulted_image);
+        //resultImageView = findViewById(R.id.resulted_image);
         resultWebView = findViewById(R.id.web_view);
         //resultTextView = findViewById(R.id.text_result);
 
@@ -106,6 +115,10 @@ public class ResultActivity extends AppCompatActivity {
         resultWebView.getSettings().setJavaScriptEnabled(true);
         resultWebView.setBackgroundColor(0x00000000); // 透明颜色
         resultWebView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+
+        resultWebView.setHorizontalScrollBarEnabled(false);
+        resultWebView.setOverScrollMode(WebView.OVER_SCROLL_NEVER);
+        resultWebView.setVerticalScrollBarEnabled(false);
 
         if (uriString != null) {
             croppedImageUri = Uri.parse(uriString);
@@ -138,6 +151,29 @@ public class ResultActivity extends AppCompatActivity {
         return predictor.runModel(run_det, run_cls, run_rec);
     }
 
+    public String bitmapToBase64(Bitmap bitmap) {
+        if (bitmap == null) {
+            return "";
+        }
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream); // choose jpeg or png
+        byte[] byteArray = outputStream.toByteArray();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
+    }
+
+    private void showResult(String res, Bitmap outputImage, String ress){
+        String encodedImage = bitmapToBase64(outputImage);
+        String temp;
+        String latexTemp = "<p>Here is an example of LaTeX formula: \\( E = mc^2\\) & \\( \\frac{\\sqrt[3](a)}{a_5^6} \\)</p>";
+        res = latexTemp + res;
+        if (!encodedImage.isEmpty()) { // have a image
+            temp = content1 + res + emptyLineBeforeImage + content3 + encodedImage + content4 + emptyLineBeforeImage + ress + content2;
+        } else {
+            temp = content1 + res + emptyLineBeforeImage + ress+ content2;
+        }
+        resultWebView.loadDataWithBaseURL(null, temp, "text/html", "utf-8", null);
+    }
+
     private String processResult(String resultText){
         String res = "";
         ArrayList<String> results = new ArrayList<>();
@@ -164,11 +200,7 @@ public class ResultActivity extends AppCompatActivity {
                         Bitmap outputImage = predictor.outputImage();
                         String resultText = predictor.outputResult();
                         res = processResult(resultText);
-                        if (outputImage != null) {
-                            resultImageView.setImageBitmap(outputImage);
-                        }
-                        Log.e("Results", res);
-                        resultWebView.loadDataWithBaseURL(null, content1+res+content2, "text/html", "utf-8", null);
+                        showResult(res, outputImage, "");
                         //resultTextView.setText(res);
                     } else {
                         Toast.makeText(this, "Model inference failed!", Toast.LENGTH_SHORT).show();
