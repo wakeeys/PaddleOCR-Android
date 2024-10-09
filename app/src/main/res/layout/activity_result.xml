@@ -42,17 +42,54 @@
         android:layout_marginTop="15dp"
         android:layout_alignStart="@id/cropped_image"/>
 
-    <WebView
-        android:id="@+id/web_view"
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="400dp"
         android:layout_height="500dp"
         android:maxHeight="500dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:layout_below="@id/text_crop_result"
         android:layout_marginTop="15dp"
         android:background="@android:color/transparent"
-        android:layout_alignStart="@id/cropped_image"/>
+        android:layout_alignStart="@id/cropped_image">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/resulted_image"
+                android:layout_width="400dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignStart="@id/text_recognition"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/resulted_image"
+                android:layout_marginTop="20dp"
+                android:padding="16dp"
+                android:scrollbars="vertical"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+
+<!--    <WebView-->
+<!--        android:id="@+id/web_view"-->
+<!--        android:layout_width="400dp"-->
+<!--        android:layout_height="500dp"-->
+<!--        android:maxHeight="500dp"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_below="@id/text_crop_result"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:layout_alignStart="@id/cropped_image"/>-->
 
 <!--    <TextView-->
 <!--        android:id="@+id/text_result"-->

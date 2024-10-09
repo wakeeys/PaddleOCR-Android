@@ -13,23 +13,26 @@ PaddleOCR 因其开源、高效以及卓越的识别效果，广泛应用于各�
 
 * **集成 PaddleOCR 文本识别模型:** 项目使用了 PaddleOCR 的文本识别模型，并结合 Android-Image-Cropper 库，实现了PaddleOCR在 Android 端的部署和高效的文本识别功能。
 
+* **多样化的显示内容:** 考虑到识别图片中中会存在数学公式、表格等复杂内容，因此，PaddleOCR 使用了 markwon库中，实现了在textView中使用markdwon格式显示数学公式、表格、图片等。
+
 * **简化的部署过程:** 通过提供清晰的文件说明和代码示例，本项目帮助开发者轻松将 PaddleOCR 作为较为独立的模块部署到现有的 Android 项目中。
 
 * **支持服务器端部署:** 除了移动端的实现外，项目还包含在服务器端使用 Python 版本的 PaddleOCR 模型的代码，为未来的服务器端功能扩展和交互提供了便利。
 
 ### 效果展示
 
-| Initialization      | Selection       |
-| ---------------     | --------------- |
-| ![Initialization](resources/image1.jpg) | ![Selection](resources/image2.jpg) |
+| Initialization      | Selection       | Cropping                           |
+| ---------------     | --------------- |----------------------------------|
+| ![Initialization](resources/image1.jpg) | ![Selection](resources/image2.jpg) | ![Cropping](resources/image3.jpg) |
 
-| Cropping            | Result          |
-| ---------------     | --------------- |
-| ![Cropping](resources/image3.jpg) | ![Result](resources/image4.jpg) |
+| Result1            | Result2        |
+| ---------------     |-----------------|
+| ![Result](resources/image4.jpg) | ![Result2](resources/image5.jpg) |
+
 
 ### 参考链接
 
-> 参考[PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR), demo位于`deploy/android-demo`下
+> 参考[PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR), demo位于`deploy/android-demo`下  \\( E_2^5 \\)
 >
 > 参考[Paddle-lite-demo](https://github.com/PaddlePaddle/Paddle-Lite-Demo), demo位于`ocr/android`中
 
